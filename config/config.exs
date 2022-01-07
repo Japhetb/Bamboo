@@ -26,6 +26,10 @@ config :bamboo, BambooWeb.Endpoint,
 # at the `config/runtime.exs`.
 config :bamboo, Bamboo.Mailer, adapter: Swoosh.Adapters.Local
 
+config :bamboo, BambooWeb.Auth.Guardian,
+  issuer: "bamboo",
+  secret_key: "V1tt7RR0HtM4ytyvZSOgkbFluOQC9xRNNUUKGUMHkwwR22dufPT4/y311IXWSTol"
+
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false
 

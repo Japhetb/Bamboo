@@ -5,8 +5,30 @@ defmodule BambooWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug BambooWeb.Auth.Pipeline
+  end
+
   scope "/api", BambooWeb do
     pipe_through :api
+    post "/users/signup", UserController, :create
+    post "/users/signin", UserController, :signin
+  end
+
+  scope "/api", BusiApiWeb do
+    pipe_through [:api, :auth]
+    resources "/analystsnews", AnalystsnewController, except: [:new, :edit]
+    resources "/externalnews", ExternalNewController, except: [:new, :edit]
+
+  end
+
+  pipeline :browser do
+    plug(:accepts, ["html"])
+  end
+
+  scope "/", BambooWeb do
+    pipe_through :browser
+    get "/", DefaultController, :index
   end
 
   # Enables LiveDashboard only for development
