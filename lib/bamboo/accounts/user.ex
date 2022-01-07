@@ -14,7 +14,7 @@ defmodule Bamboo.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:user_name, :email, :encrypted_password])
+    |> cast(attrs, [:user_name, :email, :password])
     |> validate_required([:user_name, :email, :password])
     |> validate_format(:email, ~r/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/)
     |> validate_length(:password, min: 6)
