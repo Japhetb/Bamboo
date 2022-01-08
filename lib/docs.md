@@ -7,4 +7,8 @@
  I reate the tokens, decode them, refresh tokens and revoke them in BambooWeb.Auth.Guardian module.
  I use the Guardian function to create a JWT token after a user is created. I render “user.json” to send the JWT token as part of the response.
 
+ ## access External api
+ To view external news inform of json ,start the server and go to "http://localhost:4000/externalnews"
+
+
  
