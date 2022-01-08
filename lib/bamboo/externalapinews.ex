@@ -8,7 +8,7 @@ defmodule Bamboo.ExternalApiNews do
     {:ok, %{"articles" => articles, "status" => _status, "totalResults" => _result}} =
       fetch_json(@base)
 
-    articles = articles |> Enum.map(fn x -> to_atoms(x) end) |> Enum.take(size_limit())
+    articles = articles |> Enum.map(fn x -> to_atoms(x) end) |> Enum.take(size_limit()) |> Enum.uniq()
     articles
   end
 
