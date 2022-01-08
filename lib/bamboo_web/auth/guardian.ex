@@ -12,6 +12,8 @@ defmodule BambooWeb.Auth.Guardian do
     id = claims["sub"]
     resource = Accounts.get_user!(id)
     {:ok, resource}
+    rescue
+      Ecto.NoResultsError -> {:error, :resource_not_found}
   end
 
   def authenticate(email, password) do
@@ -33,5 +35,5 @@ defmodule BambooWeb.Auth.Guardian do
     {:ok, token, _claims} = encode_and_sign(user)
     {:ok, user, token}
   end
-  
+
 end

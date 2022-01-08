@@ -19,6 +19,7 @@ defmodule BambooWeb.Router do
     pipe_through [:api, :auth]
     resources "/analystsnews", AnalystsnewController, except: [:new, :edit]
     get "/externalnews", ExternalNewController, :index
+
   end
 
   pipeline :browser do
@@ -28,6 +29,7 @@ defmodule BambooWeb.Router do
   scope "/", BambooWeb do
     pipe_through :browser
     get "/", DefaultController, :index
+    get "/externalnews", ExternalNewController, :index
 
   end
 

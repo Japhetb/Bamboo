@@ -25,6 +25,23 @@ defmodule Bamboo.ExternalApiNews do
     end
   end
 
+  def mark_favourite_by_author(news,author) do
+    favourite = Enum.filter(news, fn x -> x.author == author end)
+    favourite = [favourite, Time.utc_now()]
+  end
+
+
+  def unmark_favourite_by_author(favourite, time_limit) do
+    if Time.diff(Time.utc_now(), Enum.at(favourite,1)) >= time_limit do
+    favourite = Enum.reject(favourite, fn x -> x end)
+    favourite
+    else
+      favourite
+    end
+  end
+
+
+
   def start_counter(%Limits{} = limits) do
     limits
     |> Counter.start_link()

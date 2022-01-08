@@ -27,4 +27,9 @@ defmodule BambooWeb.FallbackController do
     |> put_status(:unauthorized)
     |> render(BambooWeb.ErrorView, :"401")
   end
+
+  def call(conn, {:error, _}) do
+    conn
+    |> render(BambooWeb.ErrorView, :"400")
+  end
 end
