@@ -1,6 +1,5 @@
 defmodule BambooWeb.AnalystsnewView do
   use BambooWeb, :view
-  alias BambooWeb.AnalystsnewView
 
   def render("analystsnew.json", %{analystsnew: analystsnew}) do
     %{

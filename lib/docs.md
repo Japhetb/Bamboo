@@ -10,5 +10,12 @@
  ## access External api
  To view external news inform of json ,start the server and go to "http://localhost:4000/externalnews"
 
-
+### Creating a user:
+To create a user ;
+    run : curl -X POST http://localhost:4000/api/users/signup -H "Content-Type: application/json" -d '{"user": {"user_name": "Jane Don", "email": "user1@example.com", "password": "password"}}'
  
+ which responds with: 
+    {"user_name": "Jane Don", "token":"eyJhbGciOiJIUzUxMi...", "email":"user1@example.com"}
+
+### Sign-in
+curl -X POST http://localhost:4000/api/users/signin -H "Content-Type: application/json" -d {"user": {"user_name": "Jane Don", "email": "user1@example.com", "password": "password"}}'

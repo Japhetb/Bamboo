@@ -1,11 +1,19 @@
 defmodule BambooWeb.Auth.Pipeline do
   use Guardian.Plug.Pipeline,
    otp_app: :bamboo,
-    module: BambooWeb.Auth.Guardian,
-    error_handler: BambooWeb.Auth.ErrorHandler
+    error_handler: BambooWeb.Auth.ErrorHandler,
+    module: BambooWeb.Auth.Guardian
 
-  plug Guardian.Plug.VerifyHeader
-  plug Guardian.Plug.EnsureAuthenticated
+
+
+
+
+  # If there is a session token, restrict it to an access token and validate it
+  plug Guardian.Plug.VerifySession, claims: %{"typ" => "access"}
+  # If there is an authorization header, restrict it to an access token and validate it
+  plug Guardian.Plug.VerifyHeader, claims: %{"typ" => "access"}
+  # Load the user if either of the verifications worked
+  plug Guardian.Plug.LoadResource, allow_blank: true
   plug Guardian.Plug.LoadResource
 
 end

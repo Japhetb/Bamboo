@@ -2,6 +2,7 @@ defmodule BambooWeb.Auth.Guardian do
   use Guardian, otp_app: :BambooWeb
 
   alias Bamboo.Accounts
+  alias Argon2
 
   def subject_for_token(user, _claims) do
     sub = to_string(user.id)
@@ -16,6 +17,7 @@ defmodule BambooWeb.Auth.Guardian do
       Ecto.NoResultsError -> {:error, :resource_not_found}
   end
 
+
   def authenticate(email, password) do
     with {:ok, user} <- Accounts.get_by_email(email) do
       case validate_password(password, user.encrypted_password) do
@@ -28,7 +30,7 @@ defmodule BambooWeb.Auth.Guardian do
   end
 
   defp validate_password(password, encrypted_password) do
-    Comeonin.Bcrypt.checkpw(password, encrypted_password)
+    Argon2.verify_pass(password, encrypted_password)
   end
 
   defp create_token(user) do

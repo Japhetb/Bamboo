@@ -1,8 +1,14 @@
 defmodule Bamboo.ExternalApiNews do
+  #fetches the news from the external API and return them as a list
+  #mark news as favourite and unmark them
+  #return  different payload size limit, assume(android 10 records, IOS 20 records, web 100 records) per request
+
   @base "https://newsapi.org/v2/everything?q=tesla&from=#{Date.utc_today().year}-#{Date.utc_today().month}-0#{Date.utc_today().day}&sortBy=publishedAt&apiKey=d36aa080b28741ffaace9996dc48c07d"
 
   alias Bamboo.Counter
   alias Bamboo.Limits, as: Limits
+
+
 
   def fetch_news() do
     {:ok, %{"articles" => articles, "status" => _status, "totalResults" => _result}} =
@@ -28,6 +34,7 @@ defmodule Bamboo.ExternalApiNews do
   def mark_favourite_by_author(news,author) do
     favourite = Enum.filter(news, fn x -> x.author == author end)
     favourite = [favourite, Time.utc_now()]
+    favourite
   end
 
 
@@ -93,3 +100,5 @@ defmodule Bamboo.ExternalApiNews do
     end
   end
 end
+
+

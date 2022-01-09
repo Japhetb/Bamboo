@@ -1,6 +1,7 @@
 defmodule Bamboo.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Argon2
 
   schema "users" do
     field :email, :string
@@ -22,13 +23,11 @@ defmodule Bamboo.Accounts.User do
     |> put_hashed_password()
   end
 
-  defp put_hashed_password(changeset) do
-    case changeset do
-      %Ecto.Changeset{valid?: true, changes: %{password: password}} ->
-        put_change(changeset, :encrypted_password, Bcrypt.hash_pwd_salt(password))
-
-      _ ->
-        changeset
-    end
+  defp put_hashed_password(%Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset) do
+    change(changeset, password: Argon2.hash_pwd_salt(password))
   end
+
+  defp put_hashed_password(changeset), do: changeset
+
+
 end
