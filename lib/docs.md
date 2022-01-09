@@ -19,3 +19,6 @@ To create a user ;
 
 ### Sign-in
 curl -X POST http://localhost:4000/api/users/signin -H "Content-Type: application/json" -d {"user": {"user_name": "Jane Don", "email": "user1@example.com", "password": "password"}}'
+
+### view the news from the external API with authentication.
+To view external news inform of json ,start the server, mix phx.server , and go to "http://localhost:4000/api/externalnews"
