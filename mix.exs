@@ -48,7 +48,8 @@ defmodule Bamboo.MixProject do
       {:comeonin, "~> 5.3"},
       {:guardian, "~> 2.2"},
       {:bcrypt_elixir, "~> 2.3"},
-      {:poison, "~> 5.0"}
+      {:poison, "~> 5.0"},
+      {:argon2_elixir, "~> 2.4"}
     ]
   end
 
