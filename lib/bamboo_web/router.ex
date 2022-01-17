@@ -15,7 +15,7 @@ defmodule BambooWeb.Router do
     post "/users/signin", UserController, :signin
   end
 
-  scope "/api", BusiApiWeb do
+  scope "/api", BambooWeb do
     pipe_through [:api, :auth]
     resources "/analystsnews", AnalystsnewController, except: [:new, :edit]
     get "/externalnews", ExternalNewController, :index
