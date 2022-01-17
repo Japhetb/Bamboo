@@ -1,13 +1,13 @@
 defmodule BambooWeb.AnalystsnewView do
   use BambooWeb, :view
 
-  def render("analystsnew.json", %{analystsnew: analystsnew}) do
+  def render("index.json", %{analystsnews: analystsnews}) do
     %{
-      id: analystsnew.id,
-      author: analystsnew.author,
-      title: analystsnew.title,
-      source_url: analystsnew.source_url,
-      content: analystsnew.content
+      id: analystsnews.id,
+      author: analystsnews.author,
+      title: analystsnews.title,
+      source_url: analystsnews.source_url,
+      content: analystsnews.content
     }
   end
 end

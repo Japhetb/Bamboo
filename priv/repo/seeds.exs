@@ -9,7 +9,8 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
-alias Bamboo.ExternalApiNews
+alias Bamboo.Repo
+alias Bamboo.Analystsnews.Analystsnew
 
-data = ExternalApiNews.fetch_news()
-data
+
+Repo.insert! %Analystsnew{author: "Brandon Luke", content: "Inside the script, you can read and write to any of your", source_url: "https://elixirschool.com/", title: "Work Hard"}

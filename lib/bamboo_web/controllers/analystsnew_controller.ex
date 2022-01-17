@@ -7,7 +7,7 @@ defmodule BambooWeb.AnalystsnewController do
   action_fallback BambooWeb.FallbackController
 
   def index(conn, _params) do
-    analystsnews = Analystsnews.list_analystsnews()
+    [analystsnews] = Analystsnews.list_analystsnews()
     render(conn, "index.json", analystsnews: analystsnews)
   end
 

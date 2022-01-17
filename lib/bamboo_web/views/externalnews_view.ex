@@ -1,7 +1,7 @@
 defmodule BambooWeb.ExternalNewView do
   use BambooWeb, :view
 
-  # alias Bamboo.ExternalApiNews
+
   def render("user.json", %{news: news}) do
     for x <- news do
       %{

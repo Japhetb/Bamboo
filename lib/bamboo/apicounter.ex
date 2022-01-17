@@ -19,7 +19,6 @@ defmodule Bamboo.Counter do
 
   @impl true
   def handle_cast({:add_cost, cost}, %Limits{} = limits) do
-    # limits = Map.put(limits, :cost,0) |> Map.put(:rate_limits,0)
     {:noreply, %{limits | cost: limits.cost + cost, rate_limit: limits.rate_limits + 1}}
   end
 
